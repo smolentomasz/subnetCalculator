@@ -9,7 +9,8 @@ public class subnetCalculator {
         String commandLine = in.nextLine();
         AddressIP addressIP = new AddressIP();
         addressIP.addressValidation(commandLine);
-        System.out.println("Address: " + addressIP.getAddress() + ", mask: " + addressIP.subnetMaskBinary());
+        //System.out.println("Maska dziesiętnie: " + addressIP.subnetMaskDecimal() + ", maska binarnie: " + addressIP.subnetMaskBinary());
+        System.out.println("Adres IP binarnie: " + addressIP.addressIpToBinary());
     }
 }
 

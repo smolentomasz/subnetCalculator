@@ -43,25 +43,47 @@ public class AddressIP {
             return false;
         return true;
     }
-    public StringBuilder subnetMaskBinary(){
-        StringBuilder mask = new StringBuilder();
+    public String subnetMaskBinary(){
+        String maskBinary = new String();
         for(int i = 0;i<32;i++){
             if(i<subnetMask){
-                mask.append(1);
+                maskBinary += 1;
             }
             else{
-                mask.append(0);
+                maskBinary += 0;
             }
-            if((i+1)%8 == 0){
-                mask.append(".");
+            if((i+1)%8 == 0 && i != 31){
+                maskBinary += ".";
             }
         }
-        mask.delete(mask.length()-1,mask.length());
-        return mask;
+        return maskBinary;
     }
-    public StringBuilder subnetMaskDecimal(){
-        StringBuilder mask2 = new StringBuilder();
-       
-        return mask2;
+    public String subnetMaskDecimal(){
+        String maskDecimal = new String();
+        String[] decimalParts = subnetMaskBinary().split("\\.");
+        for(int i = 0;i<decimalParts.length;i++){
+            maskDecimal += Integer.parseInt(decimalParts[i],2);
+            if(i%1 == 0 && i != 3){
+                maskDecimal += ".";
+            }
+        }
+        return maskDecimal;
     }
+    public String addressIpToBinary(){
+        String addressIpBinary = new String();
+        String[] addresBinaryParts = address.split("\\.");
+        for(int i = 0;i<addresBinaryParts.length;i++){
+            int parsedDecimal = Integer.toBinaryString(Integer.parseInt(addresBinaryParts[i])).length();
+            while (parsedDecimal != 8){
+                addressIpBinary += 0;
+                parsedDecimal += 1;
+            }
+            addressIpBinary += Integer.toBinaryString(Integer.parseInt(addresBinaryParts[i]));
+            if(i%1 == 0 && i != 3){
+                addressIpBinary += ".";
+            }
+        }
+        return addressIpBinary;
+    }
+
 }
