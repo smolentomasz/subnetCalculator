@@ -7,12 +7,12 @@ import java.net.UnknownHostException;
 
 public class AddressIP {
     private InetAddress localHost;
-    private InetAddress hostAddressToPing = null;
+    private static InetAddress hostAddressToPing;
     private String address;
     private int subnetMask;
     private int network, broadcast;
 
-    public InetAddress getHostAddressToPing() {
+    public static InetAddress getHostAddressToPing() {
         return hostAddressToPing;
     }
 
@@ -33,6 +33,7 @@ public class AddressIP {
             System.out.println("Address is valid!" + System.getProperty("line.separator"));
             String[] parts = commandLine.split("/");
             address = parts[0];
+            hostAddressToPing = InetAddress.getByName(parts[0]);
             subnetMask = Integer.parseInt(parts[1]);
         }
     }
@@ -90,7 +91,7 @@ public class AddressIP {
         }
         return addressIpBinary;
     }
-    public int addressToInt(String addressTo){
+    public static int addressToInt(String addressTo){
         int addressInt = 0;
         String[] addressParts = addressTo.split("\\.");
         for (int i = 3; i >= 0; i--) {
@@ -129,41 +130,7 @@ public class AddressIP {
         maxHostNumber = (broadcast ^ 1) - (network);
         return maxHostNumber;
     }
-    public void isPrivate (String addressTo){
-        int addressToInt = addressToInt(addressTo);
-        String newLine = System.getProperty("line.separator");
-        if(addressToInt >= addressToInt("10.0.0.0") &&  addressToInt <= addressToInt("10.255.255.255")){
-            System.out.println("Podany adres jest adresem prywatnym." + newLine);
-        }
-        else if(addressToInt >= addressToInt("172.16.0.0") &&  addressToInt <= addressToInt("172.31.255.255")){
-            System.out.println("Podany adres jest adresem prywatnym." + newLine);
-        }
-        else if(addressToInt >= addressToInt("192.168.0.0") &&  addressToInt <= addressToInt("192.168.255.255")){
-            System.out.println("Podany adres jest adresem prywatnym." + newLine);
-        }
-        else{
-            System.out.println("Podany adres jest adresem publicznym." + newLine);
-        }
-    }
-    public void whatClassOfAddress(String addressTo){
-        int addressToInt = addressToInt(addressTo);
-        String newLine = System.getProperty("line.separator");
-        if(addressToInt >= addressToInt("0.0.0.0") &&  addressToInt <= addressToInt("127.255.255.255")){
-            System.out.println("Podany adres należy do klasy A." + newLine);
-        }
-        else if(addressToInt >= addressToInt("128.0.0.0") &&  addressToInt <= addressToInt("191.255.255.255")){
-            System.out.println("Podany adres należy do klasy B." + newLine);
-        }
-        else if(addressToInt >= addressToInt("192.0.0.0") &&  addressToInt <= addressToInt("223.255.255.255")){
-            System.out.println("Podany adres należy do klasy C." + newLine);
-        }
-        else if(addressToInt >= addressToInt("224.0.0.0") &&  addressToInt <= addressToInt("239.255.255.255")){
-            System.out.println("Podany adres należy do klasy D." + newLine);
-        }
-        else{
-            System.out.println("Podany adres należy do klasy E." + newLine);
-        }
-    }
+
     public void sendPingRequest() throws IOException {
         System.out.println("Sending ping request to: " + hostAddressToPing);
         if(hostAddressToPing.isReachable(5000))

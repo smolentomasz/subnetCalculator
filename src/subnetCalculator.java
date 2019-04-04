@@ -14,22 +14,19 @@ public class subnetCalculator {
         String firstHostAddress = addressIP.firstHostAddress();
         String lastHostAddress = addressIP.lastHostAddress();
         String newLine = System.getProperty("line.separator");
-        System.out.println("Adres sieci: ");
-        System.out.println("Dziesiętnie: " + networkAddress + ", binarnie: " + addressIP.addressIpToBinary(networkAddress) + newLine);
-        System.out.println("Maska sieci: ");
-        System.out.println("Dziesiętnie: " + addressIP.subnetMaskDecimal() + ", binarnie: " + addressIP.subnetMaskBinary() + newLine);
-        System.out.println("Adres broadcast: ");
-        System.out.println("Dziesiętnie: " + broadcastAddress + ", binarnie: " + addressIP.addressIpToBinary(broadcastAddress) + newLine);
-        System.out.println("Pierwszy adres hosta: ");
-        System.out.println("Dziesiętnie: " + firstHostAddress + ", binarnie: " + addressIP.addressIpToBinary(firstHostAddress) + newLine);
-        System.out.println("Ostatni adres hosta: ");
-        System.out.println("Dziesiętnie: " + lastHostAddress + ", binarnie: " + addressIP.addressIpToBinary(lastHostAddress)+ newLine);
-        System.out.println("Maksymalna liczba hostów: " + addressIP.maxHostAmount() + newLine);
-        addressIP.isPrivate(myIpAddress);
-        addressIP.whatClassOfAddress(myIpAddress);
-        if(addressIP.getHostAddressToPing() != null){
-            addressIP.sendPingRequest();
-        }
+        StringBuilder allInformations = new StringBuilder();
+        allInformations.append("Adres sieci: " +  "\n" + "Dziesiętnie: " + networkAddress + ", binarnie: " + addressIP.addressIpToBinary(networkAddress) + "\n \n"
+        + "Maska sieci: " + "\n" + "Dziesiętnie: " + addressIP.subnetMaskDecimal() + ", binarnie: " + addressIP.subnetMaskBinary() + "\n \n"
+        + "Adres broadcast: " + "\n" + "Dziesiętnie: " + broadcastAddress + ", binarnie: " + addressIP.addressIpToBinary(broadcastAddress) + "\n \n"
+        + "Pierwszy adres hosta: " + "\n" + "Dziesiętnie: " + firstHostAddress + ", binarnie: " + addressIP.addressIpToBinary(firstHostAddress) + "\n \n"
+        + "Ostatni adres hosta: " + "\n" + "Dziesiętnie: " + lastHostAddress + ", binarnie: " + addressIP.addressIpToBinary(lastHostAddress) + "\n \n"
+        + "Maksymalna liczba hostów: " + addressIP.maxHostAmount() + "\n \n" + IsPrivate.isPrivate(myIpAddress) + "\n \n" + ClassOfAddress.whatClassOfAddress(myIpAddress));
+
+        System.out.println(allInformations.toString());
+
+        PingRequest.sendPingRequest();
+
+        SaveToFile.saveToFileInformation(allInformations.toString());
     }
 }
 
