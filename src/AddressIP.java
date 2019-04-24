@@ -130,12 +130,4 @@ public class AddressIP {
         maxHostNumber = (broadcast ^ 1) - (network);
         return maxHostNumber;
     }
-
-    public void sendPingRequest() throws IOException {
-        System.out.println("Sending ping request to: " + hostAddressToPing);
-        if(hostAddressToPing.isReachable(5000))
-            System.out.println("Host: " + hostAddressToPing +  " is reachable!");
-        else
-            System.out.println("Can't reach to this host!");
-    }
 }

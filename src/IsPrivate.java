@@ -9,7 +9,7 @@ public class IsPrivate {
             resultIsPrivate = "Podany adres jest adresem prywatnym.";
         }
         else if(addressToInt >= AddressIP.addressToInt("192.168.0.0") &&  addressToInt <= AddressIP.addressToInt("192.168.255.255")){
-            resultIsPrivate = "Podany adres jest adresem publicznym.";
+            resultIsPrivate = "Podany adres jest adresem prywatnym.";
         }
         else{
             resultIsPrivate = "Podany adres jest adresem publicznym.";

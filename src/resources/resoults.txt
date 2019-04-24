@@ -1,20 +1,22 @@
+Adres IP: 192.168.1.104
+ 
 Adres sieci: 
-Dziesiętnie: 192.168.43.0, binarnie: 11000000.10101000.00101011.00000000
+Dziesiętnie: 192.168.1.0, binarnie: 11000000.10101000.00000001.00000000
  
 Maska sieci: 
 Dziesiętnie: 255.255.255.0, binarnie: 11111111.11111111.11111111.00000000
  
 Adres broadcast: 
-Dziesiętnie: 192.168.43.255, binarnie: 11000000.10101000.00101011.11111111
+Dziesiętnie: 192.168.1.255, binarnie: 11000000.10101000.00000001.11111111
  
 Pierwszy adres hosta: 
-Dziesiętnie: 192.168.43.1, binarnie: 11000000.10101000.00101011.00000001
+Dziesiętnie: 192.168.1.1, binarnie: 11000000.10101000.00000001.00000001
  
 Ostatni adres hosta: 
-Dziesiętnie: 192.168.43.254, binarnie: 11000000.10101000.00101011.11111110
+Dziesiętnie: 192.168.1.254, binarnie: 11000000.10101000.00000001.11111110
  
 Maksymalna liczba hostów: 254
  
-Podany adres jest adresem publicznym.
+Podany adres jest adresem prywatnym.
  
 Podany adres należy do klasy C.
